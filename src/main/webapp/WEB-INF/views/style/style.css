@@ -1,0 +1,126 @@
+body {
+    /*background: #ccccff; !* цвет фона страницы *!*/
+    background: url("https://www.devstars.com/wp-content/uploads/2019/05/Omnichannel-Concept-Many-Comm.jpg")
+    repeat center center fixed;
+}
+#nav{
+    font-family: 'Bahnschrift', arial;
+    padding: -20px;
+}
+
+#nav li{
+    float:left; /* все ссылки идут слева на право */
+    position:center;
+    list-style:none; /* убираем точки */
+    background: rgba(255, 228, 99, 0.71);
+    width:450px;
+}
+#nav a{
+    text-decoration:none;
+    display:block; /* делаем блочным элементов тег "a" */
+    padding:20px 70px;
+    color: #000000;
+}
+
+#active a, #nav li:hover > a{
+    background: rgba(255, 255, 255, 0.5);
+}
+
+#nav ul {
+    visibility:hidden; /* скрываем выпадающее меню */
+    position:absolute;
+    padding: 0px;
+}
+
+#nav li:hover > ul{
+    visibility:visible; /* показываем выпадающее меню при наведении */
+    position: relative;
+}
+
+#nav ul a{
+    padding:10px 70px; /* делаем отступы выпадающего меню меньше от основного */
+}
+
+#nav ul li:hover{
+    background: rgba(0, 74, 217, 0.7);
+}
+
+#nav li:first-child:hover > ul{
+    left: 0px; /* при наведении на первый элемент чтобы не съежало выпадающее меню */
+}
+
+#nav > li{
+    border-right: 2px solid #000000; /* добавляем рамку к основному меню справа */
+}
+
+#nav > li:last-child{
+    border-right: none; /* убираем рамку справа основного меню */
+}
+
+#nav > li ul li{
+    border-left: 2px solid #B5CBCE; /* добавляем рамку к выпадающему меню слева */
+    border-right:2px solid #B5CBCE; /* добавляем рамку к выпадающему меню справа */
+}
+
+#nav li:first-child ul li,#nav li:first-child ul{
+    border-left:none; /* убираем рамку у выпадающего меню слева */
+}
+#nav li:last-child ul li,#nav li:last-child ul{
+    border-right:none; /* убираем рамку у выпадающего меню справа */
+}
+
+#nav li:hover > ul{
+    left: -2px; /* смещаем выпадающее меню слева от размера рамки*/
+}
+
+#header1{
+    width: 1900px;
+    height: 200px;
+    margin-bottom: -20px;
+    background: url(https://dgdesign.ru/uploads/posts/2015-12/1449504125_abstraktnaya-zheltaya-schapka-sayta.jpg) no-repeat center;
+    background-size: cover;
+}
+
+table {
+    font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+    font-size: 16px;
+    border-radius: 10px;
+    border-spacing: 0;
+    text-align: center;
+    margin: auto;
+    padding: 5px;
+}
+th {
+    background: #BCEBDD;
+    color: white;
+    text-shadow: 0 1px 1px #2D2020;
+    padding: 10px 20px;
+}
+th, td {
+    border-style: solid;
+    border-width: 0 1px 1px 0;
+    border-color: white;
+}
+th:first-child, td:first-child {
+    text-align: left;
+}
+th:first-child {
+    border-top-left-radius: 10px;
+}
+th:last-child {
+    border-top-right-radius: 10px;
+    border-right: none;
+}
+td {
+    padding: 10px 20px;
+    background: #F8E391;
+}
+tr:last-child td:first-child {
+    border-radius: 0 0 0 10px;
+}
+tr:last-child td:last-child {
+    border-radius: 0 0 10px 0;
+}
+tr td:last-child {
+    border-right: none;
+}
