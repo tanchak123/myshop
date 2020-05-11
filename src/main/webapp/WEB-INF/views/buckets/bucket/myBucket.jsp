@@ -12,7 +12,7 @@
     <style>
         <%@include file="/WEB-INF/views/style/style.css" %>
     </style>
-    <title>Users</title>
+    <title>Моя корзина</title>
     <link href="http://allfont.ru/allfont.css?fonts=open-sans" rel="stylesheet" type="text/css" />
 </head>
 <body class="text-center bg-light text-dark">

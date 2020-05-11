@@ -13,7 +13,7 @@
 
 <html>
 <head>
-    <title>Products</title>
+    <title>Список продуктов</title>
     <style>
         <%@include file='../style/style.css' %>
     </style>
