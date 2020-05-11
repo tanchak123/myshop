@@ -23,10 +23,10 @@
 <div class="text-center" style="padding-bottom: 200px">
     <ul id ="nav">
         <li>
-            <a href="">Мой профиль</a>
+            <a href="${pageContext.request.contextPath}/myprofile">Мой профиль</a>
             <ul>
                 <li><a href="${pageContext.request.contextPath}/mybucket">Моя корзина</a></li>
-                <li><a href="${pageContext.request.contextPath}/user/orders">My Orders</a></li>
+                <li><a href="${pageContext.request.contextPath}/order">My Orders</a></li>
                 <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
             </ul>
         </li>
@@ -61,7 +61,7 @@
         <h4 style="color:red">${message}</h4>
         <h4 style="color:red">${messagew}</h4>
         <div class="mx-auto" style="width: 400px;">
-            <label for="name1" color: black>Укажите имя товара:</label>
+            <label for="name1">Укажите имя товара:</label>
             <input type="text" name="name" id="name1"
                                        class="form-control" aria-describedby="passHelp">
         </div>

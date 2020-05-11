@@ -13,21 +13,19 @@
 
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Products</title>
     <style>
         <%@include file='../style/style.css' %>
     </style>
 </head>
 <body>
-
-<div class="text-center" style="padding-bottom: 200px; height: 100%">
+<div class="text-center" style="">
     <ul id ="nav">
         <li>
-            <a href="">Мой профиль</a>
+            <a href="${pageContext.request.contextPath}/myprofile">Мой профиль</a>
             <ul>
                 <li><a href="${pageContext.request.contextPath}/mybucket">Моя корзина</a></li>
-                <li><a href="${pageContext.request.contextPath}/user/orders">My Orders</a></li>
+                <li><a href="${pageContext.request.contextPath}/order">My Orders</a></li>
                 <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
             </ul>
         </li>
@@ -38,13 +36,16 @@
                 <li><a href="${pageContext.request.contextPath}/registration">Регистрация</a></li>
             </ul>
         </li>
-        <li><a href="${pageContext.request.contextPath}/products">Список продуктов products</a></li>
+        <li><a href="${pageContext.request.contextPath}/products">Список продуктов</a></li>
+
         <li>
             <a href="">Для админов</a>
+            <c:if test="${roles == 'ADMIN'}">
             <ul>
                 <li><a href="${pageContext.request.contextPath}/buckets">Список корзин</a></li>
                 <li><a href="${pageContext.request.contextPath}/users">Список пользователей</a></li>
             </ul>
+            </c:if>
         </li>
     </ul>
 </div>
@@ -61,12 +62,14 @@
 <c:forEach var="product" items="${products}">
     <tr>
         <td><c:out value="${product.id}"/></td>
-        <td><c:out value="${product.name}"/></td>
-        <td charset="Java"><c:out value="${product.price}"/></td>
+        <td><c:out value="${product.name}" escapeXml="true" /></td>
+        <td><c:out value="${product.price}"/></td>
         <td><a href="${pageContext.request.contextPath}products/add?product_id=${product.id}">В корзину</a></td>
     </tr>
 </c:forEach>
+    <c:if test="${roles == 'ADMIN'}">
     <tr><th colspan="4" style="text-align: center"><a href="${pageContext.request.contextPath}/products/create">Создать товар</a></th></tr>
+    </c:if>
 </table>
 </body>
 </html>
