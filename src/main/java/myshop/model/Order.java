@@ -1,26 +1,31 @@
 package myshop.model;
 
-import myshop.storage.Storage;
-
 import java.math.BigDecimal;
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class Order {
     private static Long orderId = 0L;
     private Long id;
-    private List<Product> products;
+    private HashMap<Product, Integer> products;
     private User user;
     private BigDecimal amountPayable;
 
-    public Order(User user) {
+    public Order(User user, List<Product> products) {
         this.id = ++orderId;
-        this.products = new ArrayList<>(Storage.buckets.stream()
-                .filter(b -> b.getUser().getId().equals(user.getId()))
-                .findFirst()
-                .orElseThrow(() -> new NoSuchElementException("Такой корзины не существует!!!"))
-                .getProducts());
+        HashMap<Product, Integer> hashMap = new HashMap<>();
+        HashSet<Product> hashSet = new HashSet<>(products);
+        for (Product product :hashSet) {
+            int count = 0;
+            for (Product product1 : products) {
+                if (product.equals(product1)) {
+                    count++;
+                }
+            }
+            hashMap.put(product, count);
+        }
+        this.products = hashMap;
         this.user = user;
         this.amountPayable = BigDecimal.valueOf(products.stream()
                 .mapToLong(x -> x.getPrice().longValue()).sum());;
@@ -30,7 +35,7 @@ public class Order {
         this.id = id;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(HashMap<Product, Integer> products) {
         this.products = products;
     }
 
@@ -42,7 +47,7 @@ public class Order {
         return id;
     }
 
-    public List<Product> getProducts() {
+    public HashMap<Product, Integer> getProducts() {
         return products;
     }
 
