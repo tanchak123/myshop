@@ -34,22 +34,27 @@ public class RegistrationController extends HttpServlet {
         if (!password.equals(repPassword)) {
             req.setAttribute("message", "Пароли не совпадают!!!");
             req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);
+            return;
         }
         if (password.length() == 0 || login.length() == 0) {
             req.setAttribute("message", "Поля не должны быть пустыми :(");
             req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);
+            return;
         }
         if (password.length() > 8) {
             req.setAttribute("message", "Пароль должен иметь хотя бы 8 символов!");
             req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);
+            return;
         }
         if (!Pattern.compile("[A-Za-z]").matcher(password).find()) {
             req.setAttribute("message", "Пароль должен иметь хотя-бы одну латинскую букву");
             req.setAttribute("message", "Пароль должен иметь хотя бы 1 латинскую букву!");
+            return;
         }
         if (userService.userExisting(login)) {
             req.setAttribute("message", "Этот логин недоступен");
             req.getRequestDispatcher("/WEB-INF/views/registration.jsp").forward(req, resp);
+            return;
         }
         User user = new User(login, password);
         userService.create(user);

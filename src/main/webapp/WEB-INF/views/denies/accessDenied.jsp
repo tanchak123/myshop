@@ -32,16 +32,9 @@
             </ul>
         </li>
         <li><a href="${pageContext.request.contextPath}/products">Список продуктов products</a></li>
-        <li>
-<c:if test="${roles == 'ADMIN'}">
-            <a href="">Для админов</a>
-            <ul>
-                <li><a href="${pageContext.request.contextPath}/buckets">Список корзин</a></li>
-                <li><a href="${pageContext.request.contextPath}/users">Список пользователей</a></li>
-            </ul>
-</c:if>
-        </li>
-
+            <li>
+                <a href="/">Главная</a>
+            </li>
     </ul>
 </div>
 <h1 style="text-align: center; background-color: rgba(255, 228, 99, 0.71)">Извините, доступ запрещен</h1>
