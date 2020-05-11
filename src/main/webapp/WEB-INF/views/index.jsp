@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <title>Название сайта</title>
+    <title>Главная страница</title>
     <style>
         <%@include file='style/style.css' %>
     </style>
@@ -13,10 +13,10 @@
 <div class="text-center">
     <ul id ="nav">
         <li>
-            <a href="">Мой профиль</a>
+            <a href="${pageContext.request.contextPath}/myprofile">Мой профиль</a>
             <ul>
                 <li><a href="${pageContext.request.contextPath}/mybucket">Моя корзина</a></li>
-                <li><a href="${pageContext.request.contextPath}/user/orders">My Orders</a></li>
+                <li><a href="${pageContext.request.contextPath}/order">My Orders</a></li>
                 <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
             </ul>
         </li>
