@@ -15,6 +15,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.log4j.Logger;
 import myshop.lib.Injector;
 import myshop.model.Role;
 import myshop.model.Role.RoleName;
@@ -23,6 +24,7 @@ import myshop.service.UserService;
 
 public class AuthorizationFilter implements Filter {
     private static final String USER_ID = "user_id";
+    private static final Logger LOGGER = Logger.getLogger(AuthorizationFilter.class);
     private final Injector injector = Injector.getInstance("myshop");
     private final UserService userService = (UserService) injector.getInstance(UserService.class);
     private Map<String, List<Role.RoleName>> protectedUrls = new HashMap<>();
@@ -59,6 +61,7 @@ public class AuthorizationFilter implements Filter {
         }
         User user = userService.get(userId);
         if (!isRole(user, requestedUrl)) {
+            LOGGER.warn("Кто-то без статуса 'ADMIN' пытаеться зайти на ограниченную страницу#" + userId);
             resp.sendRedirect(req.getContextPath() + "/denied");
             return;
         }
