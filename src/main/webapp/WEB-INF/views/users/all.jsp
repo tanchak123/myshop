@@ -46,7 +46,7 @@
 <div>
 <table border="1">
         <tr>
-            <td colspan="4" style="text-align: center">Список пользователей</td>
+            <td colspan="5" style="text-align: center">Список пользователей</td>
         </tr>
     <tr>
         <th>id</th>

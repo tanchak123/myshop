@@ -59,4 +59,14 @@ public class UserServiceImpl implements UserService {
     public void deleteByUser(User user) {
         userDao.delete(user.getId());
     }
+
+    @Override
+    public boolean userExisting(String login) {
+        for (User user : userDao.getAll()) {
+            if (user.getLogin().equals(login)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

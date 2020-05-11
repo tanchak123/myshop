@@ -18,13 +18,17 @@ public class InjectDataController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        if (userService.userExisting("a")) {
+            resp.sendRedirect("/login");
+            return;
+        }
+        User sanaya = new User("Sanaya", "Vasya");
+        User admin = new User("a", "a");
+        userService.create(sanaya);
+        userService.create(admin);
         userService.create(new User("Sanya", "Vasya"));
         userService.create(new User("ыыыыыы", "vas123"));
-        User a = new User("a", "a");
-        a.setRoles(Role.RoleName.ADMIN);
-        User sanya = new User("Sanaya", "Vasya");
-        userService.create(a);
-        userService.create(sanya);
+        admin.setRoles(Role.RoleName.ADMIN);
         List<User> users = userService.getAll();
         req.setAttribute("users", users);
         req.getRequestDispatcher("/WEB-INF/views/injectData.jsp").forward(req, resp);

@@ -7,4 +7,6 @@ public interface UserService extends GenericService<User, Long> {
     User getByLogin(String login);
 
     void deleteByUser(User user);
+
+    boolean userExisting(String login);
 }

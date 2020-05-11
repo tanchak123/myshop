@@ -25,6 +25,7 @@ public class ProductCreateController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
         String name = req.getParameter("name");
         String pricer = req.getParameter("price");
         if (Pattern.compile("[A-Za-z]").matcher(pricer).find()
