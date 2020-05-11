@@ -16,13 +16,13 @@
     <link href="http://allfont.ru/allfont.css?fonts=open-sans" rel="stylesheet" type="text/css" />
 </head>
 <body class="text-center bg-light text-dark">
-<div class="text-center" style="padding-bottom: 200px">
+<div class="text-center">
     <ul id ="nav">
         <li>
-            <a href="">Мой профиль</a>
+            <a href="${pageContext.request.contextPath}/myprofile">Мой профиль</a>
             <ul>
                 <li><a href="${pageContext.request.contextPath}/mybucket">Моя корзина</a></li>
-                <li><a href="${pageContext.request.contextPath}/user/orders">My Orders</a></li>
+                <li><a href="${pageContext.request.contextPath}/order">My Orders</a></li>
                 <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
             </ul>
         </li>
@@ -36,10 +36,12 @@
         <li><a href="${pageContext.request.contextPath}/products">Список продуктов products</a></li>
         <li>
             <a href="">Для админов</a>
+            <c:if test="${roles == 'ADMIN'}">
             <ul>
                 <li><a href="${pageContext.request.contextPath}/buckets">Список корзин</a></li>
                 <li><a href="${pageContext.request.contextPath}/users">Список пользователей</a></li>
             </ul>
+            </c:if>
         </li>
     </ul>
 </div>
