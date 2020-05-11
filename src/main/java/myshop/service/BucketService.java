@@ -1,10 +1,9 @@
 package myshop.service;
 
-import myshop.model.Bucket;
-import myshop.model.Product;
-
 import java.math.BigDecimal;
 import java.util.List;
+import myshop.model.Bucket;
+import myshop.model.Product;
 
 public interface BucketService extends GenericService<Bucket, Long> {
 
@@ -22,7 +21,7 @@ public interface BucketService extends GenericService<Bucket, Long> {
 
     public void clearBucket(Long productId, Long userId);
 
-    public BigDecimal getSum(Long user_id);
+    public BigDecimal getSum(Long userId);
 
 }
 

@@ -1,13 +1,12 @@
 package myshop.service.security;
 
 import myshop.lib.Inject;
-import myshop.lib.Injector;
 import myshop.lib.Service;
 import myshop.model.User;
 import myshop.service.UserService;
 
 @Service
-public class AuthnticationServiceImpl implements AuthenticationService{
+public class AuthnticationServiceImpl implements AuthenticationService {
     @Inject
     private UserService userService;
 

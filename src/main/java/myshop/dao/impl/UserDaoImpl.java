@@ -1,20 +1,21 @@
 package myshop.dao.impl;
 
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.IntStream;
 import myshop.dao.UserDao;
 import myshop.lib.Dao;
 import myshop.model.User;
 import myshop.storage.Storage;
-
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.stream.IntStream;
 
 @Dao
 public class UserDaoImpl implements UserDao {
 
     @Override
     public void create(User user) {
-        Storage.users.add(user);
+        if (getAll().stream().noneMatch(user1 -> user1.getLogin().equals(user.getLogin()))) {
+            Storage.users.add(user);
+        }
     }
 
     @Override

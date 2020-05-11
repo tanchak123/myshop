@@ -1,30 +1,24 @@
 package myshop.controllers.user;
 
-import myshop.lib.Injector;
-import myshop.model.Bucket;
-import myshop.model.User;
-import myshop.service.BucketService;
-import myshop.service.UserService;
-
+import java.io.IOException;
+import java.util.regex.Pattern;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.nio.file.PathMatcher;
-import java.util.regex.Pattern;
-
+import myshop.lib.Injector;
+import myshop.model.User;
+import myshop.service.UserService;
 
 public class RegistrationController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("myshop");
     private final UserService userService = (UserService)
             injector.getInstance(UserService.class);
-    private final BucketService bucketService= (BucketService)
-            injector.getInstance(BucketService.class);
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        if ((Long)req.getSession().getAttribute("user_id") != null) {
+        if (req.getSession().getAttribute("user_id") != null) {
             resp.sendRedirect(req.getContextPath() + "/");
             return;
         }
@@ -54,8 +48,8 @@ public class RegistrationController extends HttpServlet {
         if (!Pattern.compile("[A-Za-z]").matcher(password).find()) {
             req.setAttribute("message", "Пароль должен иметь хотя бы 1 латинскую букву!");
         }
-            User user = new User(login, password);
-            userService.create(user);
-            resp.sendRedirect(req.getContextPath() + "/");
+        User user = new User(login, password);
+        userService.create(user);
+        resp.sendRedirect(req.getContextPath() + "/");
     }
 }

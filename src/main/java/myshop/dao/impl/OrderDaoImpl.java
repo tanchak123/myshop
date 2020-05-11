@@ -1,13 +1,12 @@
 package myshop.dao.impl;
 
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.IntStream;
 import myshop.dao.OrderDao;
 import myshop.lib.Dao;
 import myshop.model.Order;
 import myshop.storage.Storage;
-
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.stream.IntStream;
 
 @Dao
 public class OrderDaoImpl implements OrderDao {

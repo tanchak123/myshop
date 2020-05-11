@@ -1,5 +1,6 @@
 package myshop.service.impl;
 
+import java.util.List;
 import myshop.dao.OrderDao;
 import myshop.lib.Inject;
 import myshop.lib.Service;
@@ -7,8 +8,6 @@ import myshop.model.Order;
 import myshop.service.BucketService;
 import myshop.service.OrderService;
 import myshop.storage.Storage;
-
-import java.util.List;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -20,6 +19,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void create(Order order) {
+
         orderDao.create(order);
     }
 

@@ -1,5 +1,9 @@
 package myshop;
 
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import myshop.dao.OrderDao;
 import myshop.dao.impl.OrderDaoImpl;
 import myshop.lib.Injector;
@@ -12,9 +16,6 @@ import myshop.service.ProductService;
 import myshop.service.UserService;
 import myshop.storage.Storage;
 
-import java.util.regex.Pattern;
-import java.util.stream.Collectors;
-
 public class Application {
     private static Injector injector = Injector.getInstance("myshop");
 
@@ -23,7 +24,7 @@ public class Application {
         String b = "[a-zA-Z]";
         System.out.println(b);
         if (Pattern.compile("[A-Za-z]").matcher(a).find()) {
-            System.out.println("wo");
+            System.out.println("123");
         }
         final ProductService itemServices =
                 (ProductService) injector.getInstance(ProductService.class);
@@ -56,10 +57,13 @@ public class Application {
         buckets.addItemByName("Shtani","sva");
         System.out.println("Producti" + buckets.getProducts(1L));
         System.out.println(buckets.getAll());
-        orders.create(new Order(Storage.users.get(1)));
+        List<Product> products = buckets.getAll().stream()
+                .filter(bucket -> bucket.getUser().getId().equals(Storage.users.get(1).getId()))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("Такой корзины не существует!!!"))
+                .getProducts();
+        orders.create(new Order(Storage.users.get(1), products));
         orders.getAll();
-
-
         /* final UserService userService = (UserService) injector.getInstance(UserService.class);
         final BucketService shoppingCartService = (ShoppingCartService)
                 injector.getInstance(ShoppingCartService.class);

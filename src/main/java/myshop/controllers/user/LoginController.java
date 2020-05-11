@@ -1,26 +1,24 @@
 package myshop.controllers.user;
 
-import myshop.lib.Injector;
-import myshop.model.User;
-import myshop.service.UserService;
-import myshop.service.security.AuthenticationService;
-
+import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
-import java.util.NoSuchElementException;
+import myshop.lib.Injector;
+import myshop.model.User;
+import myshop.service.security.AuthenticationService;
 
 public class LoginController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("myshop");
     AuthenticationService authenticationService = (AuthenticationService)
             INJECTOR.getInstance(AuthenticationService.class);
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        if ((Long)req.getSession().getAttribute("user_id") != null) {
+        if (req.getSession().getAttribute("user_id") != null) {
             resp.sendRedirect(req.getContextPath() + "/");
             return;
         }

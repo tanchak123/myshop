@@ -1,14 +1,12 @@
 package myshop.dao.impl;
 
-import myshop.dao.BucketDao;
-import myshop.lib.Dao;
-import myshop.model.Bucket;
-import myshop.model.Product;
-import myshop.storage.Storage;
-
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.IntStream;
+import myshop.dao.BucketDao;
+import myshop.lib.Dao;
+import myshop.model.Bucket;
+import myshop.storage.Storage;
 
 @Dao
 public class BucketDaoImpl implements BucketDao {
@@ -17,7 +15,6 @@ public class BucketDaoImpl implements BucketDao {
     public void create(Bucket bucket) {
         Storage.buckets.add(bucket);
     }
-
 
     @Override
     public Bucket get(Long id) {
@@ -37,8 +34,8 @@ public class BucketDaoImpl implements BucketDao {
 
     @Override
     public void delete(Long id) {
-        Storage.buckets.
-                removeIf(bucket -> bucket.getId().equals(id));
+        Storage.buckets
+                .removeIf(bucket -> bucket.getId().equals(id));
     }
 
     @Override

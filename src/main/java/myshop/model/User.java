@@ -1,5 +1,8 @@
 package myshop.model;
 
+import static myshop.model.Role.RoleName.USER;
+
+import java.util.HashSet;
 import java.util.Set;
 
 public class User {
@@ -7,16 +10,13 @@ public class User {
     private Long id;
     private String login;
     private String password;
-    private Set<Role> roles;
+    private Set<Role.RoleName> roles = new HashSet<>();
 
     public User(String login, String password) {
         this.login = login;
         this.password = password;
         this.id = ++idNum;
-    }
-
-    public boolean obligation() {
-        return false;
+        roles.add(USER);
     }
 
     public String getLogin() {
@@ -38,5 +38,13 @@ public class User {
                 + ", login='" + login + '\''
                 + ", password='" + password + '\''
                 + '}';
+    }
+
+    public Set<Role.RoleName> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Role.RoleName role) {
+        roles.add(role);
     }
 }

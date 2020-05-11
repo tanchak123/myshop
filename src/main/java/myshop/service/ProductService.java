@@ -1,10 +1,9 @@
 package myshop.service;
 
+import java.util.List;
 import myshop.model.Product;
 
-import java.util.List;
-
-public interface ProductService extends GenericService<Product, Long>{
+public interface ProductService extends GenericService<Product, Long> {
 
     Product getByName(String name);
 

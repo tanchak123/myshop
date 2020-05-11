@@ -1,5 +1,9 @@
 package myshop.service.impl;
 
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.IntStream;
 import myshop.dao.BucketDao;
 import myshop.dao.ProductDao;
 import myshop.dao.UserDao;
@@ -9,12 +13,6 @@ import myshop.model.Bucket;
 import myshop.model.Product;
 import myshop.service.BucketService;
 import myshop.storage.Storage;
-
-import java.math.BigDecimal;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 @Service
 public class BucketServiceImpl implements BucketService {
@@ -116,8 +114,10 @@ public class BucketServiceImpl implements BucketService {
                 .orElseThrow(() -> new NoSuchElementException("Такого предмета нет в корзине :(")));
     }
 
-    public BigDecimal getSum(Long user_id) {
-        return new BigDecimal(getByUserId(user_id).getProducts().
-                stream().mapToLong(product -> product.getPrice().longValue()).sum());
+    public BigDecimal getSum(Long userId) {
+        return new BigDecimal(getByUserId(userId).getProducts().stream()
+                .mapToLong(product -> product.getPrice()
+                .longValue())
+                .sum());
     }
 }

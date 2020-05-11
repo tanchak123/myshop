@@ -1,15 +1,12 @@
 package myshop.dao.impl;
 
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.IntStream;
 import myshop.dao.ProductDao;
 import myshop.lib.Dao;
 import myshop.model.Product;
 import myshop.storage.Storage;
-import org.w3c.dom.ls.LSOutput;
-
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.stream.IntStream;
 
 @Dao
 public class ProductDaoImpl implements ProductDao {

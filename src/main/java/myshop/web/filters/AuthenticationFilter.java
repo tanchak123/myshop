@@ -1,13 +1,16 @@
 package myshop.web.filters;
 
-import myshop.lib.Injector;
-import myshop.service.UserService;
-
-import javax.servlet.*;
-import javax.servlet.http.HttpServlet;
+import java.io.IOException;
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import myshop.lib.Injector;
+import myshop.service.UserService;
 
 public class AuthenticationFilter implements Filter {
     private static String USER_ID = "user_id";
@@ -26,13 +29,19 @@ public class AuthenticationFilter implements Filter {
         HttpServletResponse resp = (HttpServletResponse) servletResponse;
         String url = req.getServletPath();
         if (url.equals("/login")
-                || url.equals("/registration")) {
-            filterChain.doFilter(req, resp);
-            return;
+                || url.equals("/registration")
+                || url.equals("/injection")) {
+            if (req.getSession().getAttribute("user_id") != null) {
+                resp.sendRedirect(req.getContextPath() + "/");
+                return;
+            } else {
+                filterChain.doFilter(req, resp);
+                return;
+            }
         }
         Long userId = (Long) req.getSession().getAttribute(USER_ID);
         if (userId == null) {
-            resp.sendRedirect("/login");
+            resp.sendRedirect(req.getContextPath() + "/login");
             return;
         }
         filterChain.doFilter(req, resp);

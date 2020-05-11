@@ -1,15 +1,14 @@
 package myshop.service.impl;
 
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 import myshop.dao.ProductDao;
 import myshop.lib.Inject;
 import myshop.lib.Service;
 import myshop.model.Product;
 import myshop.service.ProductService;
 import myshop.storage.Storage;
-
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {

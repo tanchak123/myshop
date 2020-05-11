@@ -1,5 +1,7 @@
 package myshop.service.impl;
 
+import java.util.List;
+import java.util.NoSuchElementException;
 import myshop.dao.BucketDao;
 import myshop.dao.UserDao;
 import myshop.lib.Inject;
@@ -7,9 +9,6 @@ import myshop.lib.Service;
 import myshop.model.Bucket;
 import myshop.model.User;
 import myshop.service.UserService;
-
-import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 public class UserServiceImpl implements UserService {

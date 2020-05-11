@@ -6,6 +6,5 @@ public interface AuthenticationService {
 
     boolean existence(String login);
 
-
     User getByLogin(String login);
 }
