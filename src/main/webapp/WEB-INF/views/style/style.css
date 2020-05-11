@@ -1,11 +1,12 @@
 body {
     /*background: #ccccff; !* цвет фона страницы *!*/
-    background: url("https://www.devstars.com/wp-content/uploads/2019/05/Omnichannel-Concept-Many-Comm.jpg")
-    repeat center center fixed;
+    background: url(https://i.ibb.co/88HmDDb/supermarket-949913.jpg);
+    background-size: cover;
 }
 #nav{
     font-family: 'Bahnschrift', arial;
     padding: -20px;
+    padding-bottom: 200px;     /* 2 */
 }
 
 #nav li{
@@ -91,7 +92,7 @@ table {
     padding: 5px;
 }
 th {
-    background: #BCEBDD;
+    background: rgba(81, 136, 166, 0.8);
     color: white;
     text-shadow: 0 1px 1px #2D2020;
     padding: 10px 20px;
@@ -113,7 +114,7 @@ th:last-child {
 }
 td {
     padding: 10px 20px;
-    background: #F8E391;
+    background: rgba(248, 227, 145, 0.8);
 }
 tr:last-child td:first-child {
     border-radius: 0 0 0 10px;
@@ -124,3 +125,4 @@ tr:last-child td:last-child {
 tr td:last-child {
     border-right: none;
 }
+
