@@ -15,6 +15,14 @@
     </servlet-mapping>
     <!--Users-->
     <servlet>
+        <servlet-name>myprofile</servlet-name>
+        <servlet-class>myshop.controllers.user.MyProfileController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>myprofile</servlet-name>
+        <url-pattern>/myprofile</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>allUsers</servlet-name>
         <servlet-class>myshop.controllers.user.UserController</servlet-class>
     </servlet>
@@ -114,6 +122,24 @@
         <servlet-name>addProduct</servlet-name>
         <url-pattern>/products/add</url-pattern>
     </servlet-mapping>
+<!--    orders-->
+    <servlet>
+        <servlet-name>order</servlet-name>
+        <servlet-class>myshop.controllers.order.OrderController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>order</servlet-name>
+        <url-pattern>/order</url-pattern>
+    </servlet-mapping>
+<!--    denies-->
+    <servlet>
+        <servlet-name>denies</servlet-name>
+        <servlet-class>myshop.controllers.denies.DeniesController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>denies</servlet-name>
+        <url-pattern>/denied</url-pattern>
+    </servlet-mapping>
 
     <filter>
         <filter-name>authenticationFilter</filter-name>
@@ -121,6 +147,14 @@
     </filter>
     <filter-mapping>
         <filter-name>authenticationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>authorizationFilter</filter-name>
+        <filter-class>myshop.web.filters.AuthorizationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>authorizationFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 </web-app>
