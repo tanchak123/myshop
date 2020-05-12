@@ -47,4 +47,8 @@ public class User {
     public void setRoles(Role.RoleName role) {
         roles.add(role);
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
