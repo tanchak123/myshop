@@ -34,19 +34,28 @@
             </ul>
         </li>
         <li><a href="${pageContext.request.contextPath}/products">Список продуктов products</a></li>
-        <li>
-            <a href="">Для админов</a>
-            <ul>
-                <li><a href="${pageContext.request.contextPath}/buckets">Список корзин</a></li>
-                <li><a href="${pageContext.request.contextPath}/users">Список пользователей</a></li>
-            </ul>
-        </li>
+        <c:choose>
+            <c:when test="${roles == 'ADMIN'}">
+                <li>
+                    <a href="">Для админов</a>
+                    <ul>
+                        <li><a href="${pageContext.request.contextPath}/buckets">Список корзин</a></li>
+                        <li><a href="${pageContext.request.contextPath}/users">Список пользователей</a></li>
+                    </ul>
+                </li>
+            </c:when>
+            <c:otherwise>
+                <li>
+                    <a href="/">Главная</a>
+                </li>
+            </c:otherwise>
+        </c:choose>
     </ul>
 </div>
 <div>
 <table border="1">
         <tr>
-            <td colspan="4" style="text-align: center">Список пользователей</td>
+            <td colspan="5" style="text-align: center">Список пользователей</td>
         </tr>
     <tr>
         <th>id</th>

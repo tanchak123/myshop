@@ -21,7 +21,7 @@
     <h1>Регистрация</h1>
 </div>
 <form method="post" action="${pageContext.request.contextPath}/registration">
-    <h4 style="color:red">${message}</h4>
+    <h4 style="color:red;text-align: center">${message}</h4>
     <form class="needs-validation" method="post" novalidate>
         <div class="mx-auto" style="width: 400px;">
             <div class="form-group px-md-5">

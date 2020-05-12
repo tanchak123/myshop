@@ -25,6 +25,7 @@ public class IndexController extends HttpServlet {
         List<Role.RoleName> roles = new ArrayList<>(userService.get(userId).getRoles());
         String role = roles.get(roles.size() - 1).toString();
         req.setAttribute("time", timeValue);
+        req.setAttribute("roles", role);
         req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
     }
 }

@@ -34,6 +34,8 @@
             </ul>
         </li>
         <li><a href="${pageContext.request.contextPath}/products">Список продуктов products</a></li>
+        <c:choose>
+        <c:when test="${roles == 'ADMIN'}">
         <li>
             <a href="">Для админов</a>
             <ul>
@@ -41,6 +43,13 @@
                 <li><a href="${pageContext.request.contextPath}/users">Список пользователей</a></li>
             </ul>
         </li>
+        </c:when>
+        <c:otherwise>
+            <li>
+                <a href="/">Главная</a>
+            </li>
+        </c:otherwise>
+        </c:choose>
     </ul>
 </div>
 <table border="1">

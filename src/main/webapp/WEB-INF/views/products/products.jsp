@@ -5,11 +5,9 @@
   Time: 18:59
   To change this template use File | Settings | File Templates.
 --%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-"http://www.w3.org/TR/html4/loose.dtd">
 <%@page language="java" contentType="text/html; charset=UTF-8"
         pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
@@ -37,15 +35,22 @@
             </ul>
         </li>
         <li><a href="${pageContext.request.contextPath}/products">Список продуктов</a></li>
-
+            <c:choose>
+            <c:when test="${roles == 'ADMIN'}">
         <li>
             <a href="">Для админов</a>
-            <c:if test="${roles == 'ADMIN'}">
             <ul>
                 <li><a href="${pageContext.request.contextPath}/buckets">Список корзин</a></li>
                 <li><a href="${pageContext.request.contextPath}/users">Список пользователей</a></li>
             </ul>
-            </c:if>
+        </li>
+        </c:when>
+        <c:otherwise>
+            <li>
+                <a href="/">Главная</a>
+            </li>
+        </c:otherwise>
+        </c:choose>
         </li>
     </ul>
 </div>
@@ -62,7 +67,7 @@
 <c:forEach var="product" items="${products}">
     <tr>
         <td><c:out value="${product.id}"/></td>
-        <td><c:out value="${product.name}" escapeXml="true" /></td>
+        <td><c:out value="${product.name}"/></td>
         <td><c:out value="${product.price}"/></td>
         <td><a href="${pageContext.request.contextPath}products/add?product_id=${product.id}">В корзину</a></td>
     </tr>

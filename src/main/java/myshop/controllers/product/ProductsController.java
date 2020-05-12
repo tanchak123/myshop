@@ -24,12 +24,12 @@ public class ProductsController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         List<String> strings = new ArrayList<>();
-        strings.add("wtani");
-        strings.add("noski");
-        strings.add("Honda");
-        strings.add("CallGoti");
-        strings.add("Mazda");
-        strings.add("Roliki");
+        strings.add("Штаны");
+        strings.add("Носки");
+        strings.add("Автомобиль");
+        strings.add("Велосипед");
+        strings.add("Арбуз");
+        strings.add("Монитор");
         boolean isElemet = false;
         for (String test1 : strings) {
             isElemet = productService.checkProducts(test1);
@@ -42,9 +42,9 @@ public class ProductsController extends HttpServlet {
             productService.create(new Product(strings.get(0), "40"));
             productService.create(new Product(strings.get(1), "20"));
             productService.create(new Product(strings.get(2), "2000000"));
-            productService.create(new Product(strings.get(3), "200"));
-            productService.create(new Product(strings.get(4), "3000000"));
-            productService.create(new Product(strings.get(5), "1679"));
+            productService.create(new Product(strings.get(3), "5321"));
+            productService.create(new Product(strings.get(4), "115"));
+            productService.create(new Product(strings.get(5), "9999"));
         }
         List<Role.RoleName> roles = new ArrayList<>(userService
                 .get((Long)req.getSession().getAttribute("user_id")).getRoles());

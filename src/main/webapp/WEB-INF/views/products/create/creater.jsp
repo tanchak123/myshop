@@ -38,16 +38,24 @@
             </ul>
         </li>
         <li><a href="${pageContext.request.contextPath}/products">Список продуктов products</a></li>
-        <li>
-            <a href="">Для админов</a>
-            <ul>
-                <li><a href="${pageContext.request.contextPath}/buckets">Список корзин</a></li>
-                <li><a href="${pageContext.request.contextPath}/users">Список пользователей</a></li>
-            </ul>
-        </li>
+        <c:choose>
+            <c:when test="${roles == 'ADMIN'}">
+                <li>
+                    <a href="">Для админов</a>
+                    <ul>
+                        <li><a href="${pageContext.request.contextPath}/buckets">Список корзин</a></li>
+                        <li><a href="${pageContext.request.contextPath}/users">Список пользователей</a></li>
+                    </ul>
+                </li>
+            </c:when>
+            <c:otherwise>
+                <li>
+                    <a href="/">Главная</a>
+                </li>
+            </c:otherwise>
+        </c:choose>
     </ul>
 </div>
-<body class="bg-light text-dark"><br>
 <br>
 <div class="py-md-1" style="text-align:center;background: rgba(255,255,0,0.65);
      width: 600px;
@@ -66,8 +74,8 @@
                                        class="form-control" aria-describedby="passHelp">
         </div>
         <div class="mx-auto" style="width: 400px;">
-            <label for="price1" style="background: rgba(255,205,0,0.47); color: #2D2020;">Укажите цену товара </label><input type="number" min="0,01" step="0,01" max="1_000_000" name="price"
-                                                                                                            class="form-control" aria-describedby="passHelp" id="price1">
+            <label for="price1" style="background: rgba(255,205,0,0.47); color: #2D2020;">Укажите цену товара </label>
+            <input type="number" min="0,01" step="0,01" max="1_000_000" name="price" class="form-control" aria-describedby="passHelp" id="price1">
         </div><br>
         <div style="text-align: center">
             <button type="submit">Создать :)</button>

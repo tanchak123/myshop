@@ -16,7 +16,7 @@
     <link href="http://allfont.ru/allfont.css?fonts=open-sans" rel="stylesheet" type="text/css" />
 </head>
 <body class="text-center bg-light text-dark">
-<div class="text-center">
+<div class="text-center" style="">
     <ul id ="nav">
         <li>
             <a href="${pageContext.request.contextPath}/myprofile">Мой профиль</a>
@@ -33,15 +33,23 @@
                 <li><a href="${pageContext.request.contextPath}/registration">Регистрация</a></li>
             </ul>
         </li>
-        <li><a href="${pageContext.request.contextPath}/products">Список продуктов products</a></li>
-        <li>
-            <a href="">Для админов</a>
-            <c:if test="${roles == 'ADMIN'}">
-            <ul>
-                <li><a href="${pageContext.request.contextPath}/buckets">Список корзин</a></li>
-                <li><a href="${pageContext.request.contextPath}/users">Список пользователей</a></li>
-            </ul>
-            </c:if>
+        <li><a href="${pageContext.request.contextPath}/products">Список продуктов</a></li>
+        <c:choose>
+            <c:when test="${roles == 'ADMIN'}">
+                <li>
+                    <a href="">Для админов</a>
+                    <ul>
+                        <li><a href="${pageContext.request.contextPath}/buckets">Список корзин</a></li>
+                        <li><a href="${pageContext.request.contextPath}/users">Список пользователей</a></li>
+                    </ul>
+                </li>
+            </c:when>
+            <c:otherwise>
+                <li>
+                    <a href="/">Главная</a>
+                </li>
+            </c:otherwise>
+        </c:choose>
         </li>
     </ul>
 </div>
