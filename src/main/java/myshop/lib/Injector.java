@@ -1,5 +1,4 @@
 package myshop.lib;
-
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Constructor;
@@ -54,7 +53,6 @@ public class Injector {
         if (newInstanceOfClass == null) {
             return getNewInstance(clazz);
         }
-
         return newInstanceOfClass;
     }
 
