@@ -29,6 +29,10 @@ public class Bucket {
         return products;
     }
 
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
     public User getUser() {
         return user;
     }
