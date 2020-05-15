@@ -99,19 +99,23 @@ public class BucketServiceImpl implements BucketService {
 
     @Override
     public void add(Long productId, Long bucketId) {
-        get(bucketId).getProducts().add(Storage.products.stream()
+                Bucket bucket = get(bucketId);
+                bucket.getProducts().add(productDao.getAll().stream()
                 .filter(product -> product.getId().equals(productId))
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("Такого айди не существует :(")));
+                update(bucket);
     }
 
     @Override
     public void clearBucket(Long userId, Long productId) {
-        get(userId).getProducts().remove(
+        Bucket bucket = get(userId);
+        bucket.getProducts().remove(
                 IntStream.range(0, getByUserId(userId).getProducts().size())
                 .filter(ind -> getByUserId(userId).getProducts().get(ind).getId().equals(productId))
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("Такого предмета нет в корзине :(")));
+        update(bucket);
     }
 
     public BigDecimal getSum(Long userId) {
