@@ -6,7 +6,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class User {
-    private static Long idNum = 0L;
     private Long id;
     private String login;
     private String password;
@@ -15,7 +14,6 @@ public class User {
     public User(String login, String password) {
         this.login = login;
         this.password = password;
-        this.id = ++idNum;
         roles.add(USER);
     }
 
@@ -33,15 +31,22 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{"
-                + "id=" + id
-                + ", login='" + login + '\''
-                + ", password='" + password + '\''
-                + '}';
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                '}';
     }
 
     public Set<Role.RoleName> getRoles() {
         return roles;
+    }
+
+    public String getRolesToString() {
+        StringBuilder sb = new StringBuilder();
+        for (Role.RoleName roleName : roles) sb.append(roleName).append(" ");
+        return sb.toString().substring(0, sb.length() - 1);
     }
 
     public void setRoles(Role.RoleName role) {

@@ -4,15 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Bucket {
-    private static Long bucketId = 0L;
     private Long id;
-    private List<Product> products;
     private User user;
+    private List<Product> products;
 
     public Bucket(User user) {
         this.user = user;
         this.products = new ArrayList<>();
-        this.id = ++bucketId;
     }
 
     public void setId(Long id) {

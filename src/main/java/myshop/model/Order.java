@@ -6,14 +6,12 @@ import java.util.HashSet;
 import java.util.List;
 
 public class Order {
-    private static Long orderId = 0L;
     private Long id;
     private HashMap<Product, Integer> products;
     private User user;
     private BigDecimal amountPayable;
 
     public Order(User user, List<Product> products) {
-        this.id = ++orderId;
         HashMap<Product, Integer> hashMap = new HashMap<>();
         HashSet<Product> hashSet = new HashSet<>(products);
         for (Product product :hashSet) {
