@@ -13,6 +13,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public void create(Order order) {
+        order.setId(Storage.getOrderId());
         Storage.orders.add(order);
     }
 

@@ -8,11 +8,11 @@ import myshop.lib.Dao;
 import myshop.model.Bucket;
 import myshop.storage.Storage;
 
-@Dao
 public class BucketDaoImpl implements BucketDao {
 
     @Override
     public void create(Bucket bucket) {
+        bucket.setId(Storage.getBucketId());
         Storage.buckets.add(bucket);
     }
 

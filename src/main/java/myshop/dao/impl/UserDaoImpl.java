@@ -5,15 +5,16 @@ import java.util.NoSuchElementException;
 import java.util.stream.IntStream;
 import myshop.dao.UserDao;
 import myshop.lib.Dao;
+import myshop.lib.Inject;
 import myshop.model.User;
 import myshop.storage.Storage;
 
-@Dao
 public class UserDaoImpl implements UserDao {
 
     @Override
     public void create(User user) {
         if (getAll().stream().noneMatch(user1 -> user1.getLogin().equals(user.getLogin()))) {
+            user.setId(Storage.getUsersId());
             Storage.users.add(user);
         }
     }

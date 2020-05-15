@@ -8,11 +8,11 @@ import myshop.lib.Dao;
 import myshop.model.Product;
 import myshop.storage.Storage;
 
-@Dao
 public class ProductDaoImpl implements ProductDao {
 
     @Override
     public void create(Product product) {
+        product.setId(Storage.getProductId());
         Storage.products.add(product);
     }
 
