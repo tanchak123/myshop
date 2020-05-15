@@ -47,8 +47,6 @@ public class UserDaoJdbcImpl implements UserDao {
             LOGGER.error("Ошибка! Не могу создать юзера!");
             throw new RuntimeException("Ошибка! Не могу создать юзера");
         }
-        bucketDao.create(new Bucket(user));
-
     }
 
     @Override

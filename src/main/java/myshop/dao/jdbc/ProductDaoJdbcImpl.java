@@ -78,10 +78,10 @@ public class ProductDaoJdbcImpl implements ProductDao {
         PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
-            LOGGER.info("Товар успешно обновлён");
+            LOGGER.info("Товар успешно удалён");
         } catch (SQLException throwables) {
-            LOGGER.error("Не могу обновить товар");
-            throw new RuntimeException("Не могу обновить товар");
+            LOGGER.error("Не могу удалить товар");
+            throw new RuntimeException("Не могу удалить товар");
         }
 
     }
@@ -96,11 +96,11 @@ public class ProductDaoJdbcImpl implements ProductDao {
             while (resultSet.next()) {
                 products.add(createProductFromResultSet(resultSet));
             }
-            LOGGER.info("Товар успешно удалён");
+            LOGGER.info("Прайс-Лист успешно получен");
             return products;
         } catch (SQLException throwables) {
-            LOGGER.error("Не могу удалить товар");
-            throw new RuntimeException("Не могу удалить товар");
+            LOGGER.error("Не могу получить прайс лист");
+            throw new RuntimeException("Не могу получить прайс лист");
         }
     }
 
