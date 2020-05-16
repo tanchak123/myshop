@@ -41,26 +41,35 @@ public class OrderController extends HttpServlet {
                 .orElseThrow(() -> new NoSuchElementException("Такой корзины не существует!!!"))
                 .getProducts();
         Order order = new Order(user, products);
-        orderService.create(order);
+        isExist(order);
         String keys = order.getProducts().keySet()
                 .stream()
                 .map(Product::getName)
                 .collect(Collectors.joining(","));
-        String values = order.getProducts().values()
+        String[] values = order.getProducts().values()
                 .stream().map(Object::toString)
-                .collect(Collectors.joining(","));
-        String prices = order.getProducts().keySet().stream()
+                .collect(Collectors.joining(","))
+                .split(",");
+        String[] prices = order.getProducts().keySet().stream()
                 .map(product -> product.getPrice().toString())
-                .collect(Collectors.joining(","));
+                .collect(Collectors.joining(",")).split(",");
         String[] strings = keys.split(",");
         for (int i = 0; i < strings.length; i++) {
-            strings[i] = strings[i] + "," + values.split(",")[i]
-                    + "," + prices.split(",")[i];
+            strings[i] = strings[i] + "," + values[i]
+                    + "," + prices[i];
         }
         req.setAttribute("strings", Arrays.asList(strings));
         req.setAttribute("sum", order.getAmountPayable());
-        req.setAttribute("time", LocalTime.now());
         req.getRequestDispatcher("/WEB-INF/views/orders/order.jsp").forward(req, resp);
     }
 
+    private void isExist(Order order) {
+        for (Order order1 : orderService.getAll()) {
+            if (order1.getUser().getId().equals(order.getUser().getId())) {
+                orderService.update(order);
+                return;
+            }
+        }
+        orderService.create(order);
+    }
 }

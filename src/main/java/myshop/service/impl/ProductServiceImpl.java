@@ -68,7 +68,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<String> getNames() {
         return productDao.getAll().stream()
-                .map(product -> product.getName())
+                .map(Product::getName)
                 .collect(Collectors.toList());
     }
 
