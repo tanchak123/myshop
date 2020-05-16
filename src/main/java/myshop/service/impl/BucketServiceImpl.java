@@ -32,11 +32,7 @@ public class BucketServiceImpl implements BucketService {
 
     @Override
     public Bucket get(Long id) {
-        return bucketDao.get(bucketDao.getAll().stream()
-                .filter(bucket -> bucket.getId().equals(id))
-                .findFirst()
-                .orElseThrow(() -> new NoSuchElementException("Такого айди не существует :("))
-                .getId());
+        return bucketDao.get(id);
     }
 
     @Override

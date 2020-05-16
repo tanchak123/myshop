@@ -64,7 +64,7 @@ public class BucketDaoJdbcImpl implements BucketDao {
                 bucket = new Bucket(user);
                 bucket.setId(resultSet.getLong("bucket_id"));
                 bucket.setProducts(getProductsForBucket(resultSet
-                        .getString("products"), products));
+                        .getString("product_id"), products));
             }
             LOGGER.info("Корзина успешно создана");
             return bucket;
@@ -76,7 +76,7 @@ public class BucketDaoJdbcImpl implements BucketDao {
 
     @Override
     public void update(Bucket bucket) {
-        String query = "UPDATE buckets SET products = ? WHERE bucket_id = ?";
+        String query = "UPDATE buckets SET product_id = ? WHERE bucket_id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, fromProductListToDb(bucket));
@@ -118,7 +118,7 @@ public class BucketDaoJdbcImpl implements BucketDao {
                 User user = createUser(resultSet1);
                 Bucket bucket = new Bucket(user);
                 bucket.setId(resultSet.getLong("bucket_id"));
-                String string = resultSet.getNString("products");
+                String string = resultSet.getString("product_id");
                 bucket.setProducts(getProductsForBucket(string, products));
                 buckets.add(bucket);
             }
@@ -142,25 +142,21 @@ public class BucketDaoJdbcImpl implements BucketDao {
     }
 
     private String fromProductListToDb(Bucket bucket) {
-        List <String> products = bucket.getProducts().stream()
-                .map(Product::getName)
-                .collect(Collectors.toList());
-        return products.toString()
-                .substring(1, products.stream()
-                        .mapToInt(s -> s.length() + 2)
-                        .sum() - 1);
+        return bucket.getProducts().stream()
+                .map(product -> product.getId().toString())
+                .collect(Collectors.joining(", "));
     }
 
     private List<Product> getProductsForBucket(String string, List<Product> products) {
         List<Product> result = new ArrayList<>();
-        if (string == "") {
+        if (string.equals("")) {
             return result;
         }
         List<String> strings = Arrays.asList(string.replaceAll(" ", "")
                 .split(","));
         for (String str : strings) {
             for (Product product : products) {
-                if (product.getName().equals(str)) {
+                if (product.getId().equals(Long.valueOf(str))) {
                     result.add(product);
                     break;
                 }

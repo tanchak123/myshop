@@ -15,7 +15,7 @@ public class OrderServiceImpl implements OrderService {
     private OrderDao orderDao;
 
     @Inject
-    private BucketService shoppingCartService;
+    private BucketService bucketService;
 
     @Override
     public void create(Order order) {
@@ -30,7 +30,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getAll() {
-        return Storage.orders;
+        return orderDao.getAll();
     }
 
     @Override

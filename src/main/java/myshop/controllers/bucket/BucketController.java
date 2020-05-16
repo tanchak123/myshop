@@ -24,7 +24,7 @@ public class BucketController extends HttpServlet {
         List<List<String>> names = buckets.stream().map(Bucket::getProducts)
                 .collect(Collectors.toList()).stream()
                 .map(products1 -> products1.stream()
-                        .map(Product::getName)
+                        .map( p -> p.getId().toString())
                         .collect(Collectors.toList()))
                 .collect(Collectors.toList());
         req.setAttribute("buckets", buckets);

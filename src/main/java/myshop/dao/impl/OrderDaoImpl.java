@@ -8,7 +8,6 @@ import myshop.lib.Dao;
 import myshop.model.Order;
 import myshop.storage.Storage;
 
-@Dao
 public class OrderDaoImpl implements OrderDao {
 
     @Override
