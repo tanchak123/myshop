@@ -71,6 +71,14 @@
         <url-pattern>/users/delete</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>admin_role</servlet-name>
+        <servlet-class>myshop.controllers.user.UserAdminController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>admin_role</servlet-name>
+        <url-pattern>/users/admin_role</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>myBucket</servlet-name>
         <servlet-class>myshop.controllers.bucket.UserBucketController</servlet-class>
     </servlet>
@@ -104,6 +112,14 @@
     <servlet-mapping>
         <servlet-name>productCreater</servlet-name>
         <url-pattern>/products/create</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>imageCreater</servlet-name>
+        <servlet-class>myshop.controllers.images.ImageCreateController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>imageCreater</servlet-name>
+        <url-pattern>/imagec</url-pattern>
     </servlet-mapping>
     <!--Buckets-->
     <servlet>
