@@ -55,7 +55,7 @@
 <div>
 <table border="1">
         <tr>
-            <td colspan="5" style="text-align: center">Список пользователей</td>
+            <td colspan="6" style="text-align: center">Список пользователей</td>
         </tr>
     <tr>
         <th>id</th>
@@ -63,14 +63,17 @@
         <th>Пароль</th>
         <th>Роль</th>
         <th>Удалить?</th>
+        <th>Администратор?</th>
     </tr>
     <c:forEach var="user" items="${users}">
+        <h4 style="text-align: center; color: red">${message}</h4>
     <tr>
         <td><c:out value="${user.id}"/></td>
         <td><c:out value="${user.login}"/></td>
         <td><c:out value="${user.password}"/></td>
         <td><c:out value="${user.roles}"/></td>
         <td><a href="${pageContext.request.contextPath}users/delete?user_id=${user.id}">Удалить</a></td>
+        <td><a href="${pageContext.request.contextPath}users/admin_role?user_id=${user.id}">Получить\Убрать</a></td>
     </tr>
     </c:forEach>
 </table>

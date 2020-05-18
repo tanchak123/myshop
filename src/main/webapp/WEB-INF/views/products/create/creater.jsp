@@ -75,7 +75,8 @@
         </div>
         <div class="mx-auto" style="width: 400px;">
             <label for="price1" style="background: rgba(255,205,0,0.47); color: #2D2020;">Укажите цену товара </label>
-            <input type="number" min="0,01" step="0,01" max="1_000_000" name="price" class="form-control" aria-describedby="passHelp" id="price1">
+            <input type="number" min="0,01" step="0,01" max="1_000_000" name="price"
+                   class="form-control" aria-describedby="passHelp" id="price1">
         </div><br>
         <div style="text-align: center">
             <button type="submit">Создать :)</button>

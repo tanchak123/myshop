@@ -14,7 +14,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,7 +28,7 @@ public class BucketDaoJdbcImpl implements BucketDao {
     @Override
     public void create(Bucket bucket) {
         bucket.setId(bucket.getUser().getId());
-        String query = "INSERT INTO buckets (user_id, bucket_id, products) VALUES(?, ?, ?)";
+        String query = "INSERT INTO buckets (user_id, bucket_id, product_id) VALUES(?, ?, ?)";
         try (Connection connection = ConnectionUtil.getConnection();
             PreparedStatement preparedStatement = connection
                     .prepareStatement(query)) {
@@ -135,9 +135,11 @@ public class BucketDaoJdbcImpl implements BucketDao {
         user = new User (resultSet.getString("login"),
                 resultSet.getString("password"));
         user.setId(resultSet.getLong("user_id"));
+        HashSet<Role.RoleName> roleNames = new HashSet<>();
         for (String roleName : resultSet.getString("roles").split(" ")) {
-            user.setRoles(Role.RoleName.valueOf(roleName));
+            roleNames.add(Role.RoleName.valueOf(roleName));
         }
+        user.setRoles(roleNames);
         return user;
     }
 
@@ -152,8 +154,8 @@ public class BucketDaoJdbcImpl implements BucketDao {
         if (string.equals("")) {
             return result;
         }
-        List<String> strings = Arrays.asList(string.replaceAll(" ", "")
-                .split(","));
+        String[] strings = string.replaceAll(" ", "")
+                .split(",");
         for (String str : strings) {
             for (Product product : products) {
                 if (product.getId().equals(Long.valueOf(str))) {

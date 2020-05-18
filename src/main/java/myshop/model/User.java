@@ -49,8 +49,8 @@ public class User {
         return sb.toString().substring(0, sb.length() - 1);
     }
 
-    public void setRoles(Role.RoleName role) {
-        roles.add(role);
+    public void setRoles(HashSet<Role.RoleName> roles) {
+        this.roles = roles;
     }
 
     public void setId(Long id) {

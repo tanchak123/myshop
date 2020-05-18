@@ -1,6 +1,7 @@
 package myshop.controllers;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -29,7 +30,7 @@ public class InjectDataController extends HttpServlet {
         userService.create(new User("Sanya", "Vasya"));
         userService.create(new User("ыыыыыы", "vas123"));
         admin = userService.getByLogin(admin.getLogin());
-        admin.setRoles(Role.RoleName.ADMIN);
+        admin.setRoles(new HashSet<>(List.of(Role.RoleName.USER, Role.RoleName.ADMIN)));
         userService.update(admin);
         List<User> users = userService.getAll();
         req.setAttribute("users", users);

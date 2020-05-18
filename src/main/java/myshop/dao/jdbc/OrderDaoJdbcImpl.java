@@ -37,7 +37,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
     private static final Logger LOGGER = LogManager.getLogger(ConnectionUtil.class);
     @Override
     public void create(Order order) {
-        String query = "INSERT INTO orders(product_name, sum, count, user_id, price) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO orders(product_name, sum, count, user_id) VALUES (?, ?, ?, ?)";
         try (Connection connection = ConnectionUtil.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query,
         PreparedStatement.RETURN_GENERATED_KEYS)) {
@@ -46,8 +46,6 @@ public class OrderDaoJdbcImpl implements OrderDao {
             preparedStatement.setBigDecimal(2, order.getAmountPayable());
             preparedStatement.setString(3, createCountsStringForDb(order.getProducts().values()));
             preparedStatement.setLong(4, order.getUser().getId());
-            preparedStatement.setString(5, createStringFromPriceForDb(order
-                    .getProducts().keySet()));
             preparedStatement.executeUpdate();
             ResultSet resultSet = preparedStatement.getGeneratedKeys();
             while (resultSet.next()) {
