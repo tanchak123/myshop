@@ -22,8 +22,8 @@
             <a href="${pageContext.request.contextPath}/myprofile">Мой профиль</a>
             <ul>
                 <li><a href="${pageContext.request.contextPath}/mybucket">Моя корзина</a></li>
-                <li><a href="${pageContext.request.contextPath}/order">My Orders</a></li>
-                <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+                <li><a href="${pageContext.request.contextPath}/order">Мои заказы</a></li>
+                <li><a href="${pageContext.request.contextPath}/logout">Выйти</a></li>
             </ul>
         </li>
         <li>
@@ -72,7 +72,6 @@
         <td><c:out value="${user.password}"/></td>
         <td><c:out value="${user.roles}"/></td>
         <td><a href="${pageContext.request.contextPath}users/delete?user_id=${user.id}">Удалить</a></td>
-        <td><a href="${pageContext.request.contextPath}users/admin_role?user_id=${user.id}">Получить\Убрать</a></td>
         <td><a href="${pageContext.request.contextPath}users?user_id=${user.id}&case=post">Получить\Убрать</a></td>
     </tr>
     </c:forEach>
