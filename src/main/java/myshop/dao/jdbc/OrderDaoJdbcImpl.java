@@ -80,7 +80,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public void update(Order order) {
-        String query = "UPDATE orders SET product_name = ?, price = ?, count = ?, sum = ? "
+        String query = "UPDATE orders SET product_name = ?, sum = ?, count = ?, sum = ? "
                 + "WHERE user_id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
