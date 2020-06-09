@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import myshop.lib.Injector;
 import myshop.model.Role;
+import myshop.model.User;
 import myshop.service.UserService;
 
 public class MyProfileController extends HttpServlet {
@@ -20,12 +21,14 @@ public class MyProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        Long userId = (Long) req.getSession().getAttribute(USER_ID);
-        List<Role.RoleName> roles = new ArrayList<>(userService.get(userId).getRoles());
-        String role = roles.get(roles.size() - 1).toString();
-        req.setAttribute("ses_id", userId);
-        req.setAttribute("user", userService.get(userId));
-        req.setAttribute("roles", role);
+        User user = userService.get((Long) req.getSession().getAttribute(USER_ID));
+        for (Role.RoleName roleName : user.getRoles()) {
+            if (roleName.toString().equals("ADMIN")) {
+                req.setAttribute("roles", roleName.toString());
+            }
+        }
+        req.setAttribute("ses_id", user.getId());
+        req.setAttribute("user", userService.get(user.getId()));
         req.getRequestDispatcher("WEB-INF/views/users/myprofile.jsp").forward(req, resp);
     }
 }
