@@ -15,19 +15,18 @@ public class ImageCreateController extends HttpServlet {
     private static final Injector injector = Injector.getInstance("myshop");
     private final ProductService productService = (ProductService) injector
             .getInstance(ProductService.class);
-    private static Long productId;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        productId = Long.valueOf(req.getParameter("product_id"));
-        req.getRequestDispatcher("/WEB-INF/views/products/create/imgCreater.jsp")
+        req.setAttribute("product_id", req.getParameter("product_id"));
+        req.getRequestDispatcher("/WEB-INF/views/products/create/imgCreator.jsp")
                 .forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        Product product = productService.get(Long.valueOf(productId));
+        Product product = productService.get(Long.valueOf(req.getParameter("product_id")));
         product.setImage(req.getParameter("img_url"));
         productService.update(product);
         req.setAttribute("message", "Продукт успешно добавлен");

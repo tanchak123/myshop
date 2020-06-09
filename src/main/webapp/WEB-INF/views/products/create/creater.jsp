@@ -67,7 +67,6 @@
     <h1>НОВЫЙ ТОВАР</h1>
     <form method="post" action="${pageContext.request.contextPath}/products/create">
         <h4 style="color:red">${message}</h4>
-        <h4 style="color:red">${messagew}</h4>
         <div class="mx-auto" style="width: 400px;">
             <label for="name1">Укажите имя товара:</label>
             <input type="text" name="name" id="name1"

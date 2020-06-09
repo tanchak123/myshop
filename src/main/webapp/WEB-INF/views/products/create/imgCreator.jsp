@@ -11,7 +11,8 @@
     <title>Добавить картинку</title>
 </head>
 <body>
-<form method="post" action="${pageContext.request.contextPath}/imagec">
+<form method="post" action="${pageContext.request.contextPath}/imagec
+?product_id=${product_id}">
     <h4 style="text-align: center;color: red">Укажите ссылку</h4>
 <input style="text-align: center" type="text" class="form-control" id="img_url"
        name="img_url">

@@ -66,7 +66,6 @@
         <th>Администратор?</th>
     </tr>
     <c:forEach var="user" items="${users}">
-        <h4 style="text-align: center; color: red">${message}</h4>
     <tr>
         <td><c:out value="${user.id}"/></td>
         <td><c:out value="${user.login}"/></td>
@@ -74,9 +73,11 @@
         <td><c:out value="${user.roles}"/></td>
         <td><a href="${pageContext.request.contextPath}users/delete?user_id=${user.id}">Удалить</a></td>
         <td><a href="${pageContext.request.contextPath}users/admin_role?user_id=${user.id}">Получить\Убрать</a></td>
+        <td><a href="${pageContext.request.contextPath}users?user_id=${user.id}&case=post">Получить\Убрать</a></td>
     </tr>
     </c:forEach>
 </table>
+    <h1 style="background-color:rgba(248, 227, 145, 0.8);background-size: cover ;text-align:center;align-content:center">${message}</h1>
 </div>
 </body>
 </html>

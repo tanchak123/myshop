@@ -76,7 +76,7 @@
         <td><img src="${product.image}"></td>
         <td><a href="${pageContext.request.contextPath}products/add?product_id=${product.id}">В корзину</a></td>
         <c:if test="${roles == 'ADMIN'}">
-        <td><a href="${pageContext.request.contextPath}/imagec?product_id=${product.id}">Изменить картинку</a></td>
+        <td><a href="${pageContext.request.contextPath}/imagec?product_id=${product.id}" class="btn">Изменить картинку</a></td>
         </c:if>
     </tr>
 </c:forEach>
