@@ -14,6 +14,9 @@
       crossorigin="anonymous">
 <head>
     <title>Регистрация</title>
+    <style>
+        <%@include file="style/button.css"%>
+    </style>
 </head>
 <body class="bg-light text-dark"><br>
 <div class="py-md-1" style="text-align:center;"><br>
@@ -60,7 +63,7 @@
             </div>
         </div>
         <div style="text-align: center">
-            <button type="submit">Регистрация</button>
+            <button class="button" type="submit">Регистрация</button>
         </div>
     </form>
 
