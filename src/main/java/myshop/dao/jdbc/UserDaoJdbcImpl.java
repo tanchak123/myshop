@@ -127,10 +127,11 @@ public class UserDaoJdbcImpl implements UserDao {
         String password = resultSet.getNString("password");
         User user = new User(login, password);
         user.setId(resultSet.getLong("user_id"));
-        HashSet<Role.RoleName> roleNames= new HashSet<>();
-        for (String roles : resultSet.getString("roles")
-                .split(" ")) {
-            roleNames.add(Role.RoleName.valueOf(roles));
+        HashSet<Role.RoleName> roleNames = new HashSet<>();
+        String string = resultSet.getString("roles");
+        String[] strings = string.split(" ");
+        for (String roles : strings) {
+                roleNames.add(Role.RoleName.valueOf(roles));
         }
         user.setRoles(roleNames);
         return user;

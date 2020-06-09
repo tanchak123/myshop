@@ -24,14 +24,12 @@ public class InjectDataController extends HttpServlet {
             return;
         }
         User sanaya = new User("Sanaya", "Vasya");
-        User admin = new User("a", "a");
         userService.create(sanaya);
+        User admin = new User("a", "a");
+        admin.setRoles(new HashSet<>(List.of(Role.RoleName.USER, Role.RoleName.ADMIN)));
         userService.create(admin);
         userService.create(new User("Sanya", "Vasya"));
-        userService.create(new User("ыыыыыы", "vas123"));
-        admin = userService.getByLogin(admin.getLogin());
-        admin.setRoles(new HashSet<>(List.of(Role.RoleName.USER, Role.RoleName.ADMIN)));
-        userService.update(admin);
+        userService.create(new User("u", "u"));
         List<User> users = userService.getAll();
         req.setAttribute("users", users);
         req.getRequestDispatcher("/WEB-INF/views/injectData.jsp").forward(req, resp);

@@ -30,11 +30,12 @@ public class OrderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        Long userId = (Long) req.getSession().getAttribute(USER_ID);
-        User user = userService.get(userId);
-        List<Role.RoleName> roles = new ArrayList<>(user.getRoles());
-        String role = roles.get(roles.size() - 1).toString();
-        req.setAttribute("roles", role);
+        User user = userService.get((Long) req.getSession().getAttribute(USER_ID));
+        for (Role.RoleName roleName : user.getRoles()) {
+            if (roleName.toString().equals("ADMIN")) {
+                req.setAttribute("roles", roleName.toString());
+            }
+        }
         List<Product> products = bucketService.getAll().stream()
                 .filter(b -> b.getUser().getId().equals(user.getId()))
                 .findFirst()
