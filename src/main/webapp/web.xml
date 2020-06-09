@@ -71,6 +71,14 @@
         <url-pattern>/users/delete</url-pattern>
     </servlet-mapping>
     <servlet>
+        <servlet-name>admin_role</servlet-name>
+        <servlet-class>myshop.controllers.user.UserAdminController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>admin_role</servlet-name>
+        <url-pattern>/users/admin_role</url-pattern>
+    </servlet-mapping>
+    <servlet>
         <servlet-name>myBucket</servlet-name>
         <servlet-class>myshop.controllers.bucket.UserBucketController</servlet-class>
     </servlet>
@@ -98,12 +106,20 @@
         <url-pattern>/products</url-pattern>
     </servlet-mapping>
     <servlet>
-        <servlet-name>productCreater</servlet-name>
+        <servlet-name>productCreator</servlet-name>
         <servlet-class>myshop.controllers.product.ProductCreateController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>productCreater</servlet-name>
+        <servlet-name>productCreator</servlet-name>
         <url-pattern>/products/create</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>imageCreator</servlet-name>
+        <servlet-class>myshop.controllers.images.ImageCreateController</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>imageCreator</servlet-name>
+        <url-pattern>/imagec</url-pattern>
     </servlet-mapping>
     <!--Buckets-->
     <servlet>
@@ -120,7 +136,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>addProduct</servlet-name>
-        <url-pattern>/products/add</url-pattern>
+            <url-pattern>/products/add</url-pattern>
     </servlet-mapping>
 <!--    orders-->
     <servlet>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import myshop.lib.Injector;
 import myshop.model.Product;
 import myshop.model.Role;
+import myshop.model.User;
 import myshop.service.ProductService;
 import myshop.service.UserService;
 
@@ -19,6 +20,7 @@ public class ProductsController extends HttpServlet {
             injector.getInstance(ProductService.class);
     private final UserService userService = (UserService)
             injector.getInstance(UserService.class);
+    private static final String USER_ID = "user_id";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -46,10 +48,12 @@ public class ProductsController extends HttpServlet {
             productService.create(new Product(strings.get(4), "115"));
             productService.create(new Product(strings.get(5), "9999"));
         }
-        List<Role.RoleName> roles = new ArrayList<>(userService
-                .get((Long)req.getSession().getAttribute("user_id")).getRoles());
-        String role = roles.get(roles.size() - 1).toString();
-        req.setAttribute("roles", role);
+        User user = userService.get((Long) req.getSession().getAttribute(USER_ID));
+        for (Role.RoleName roleName : user.getRoles()) {
+            if (roleName.toString().equals("ADMIN")) {
+                req.setAttribute("roles", roleName.toString());
+            }
+        }
         req.setAttribute("products", productService.getAll());
         req.getRequestDispatcher("/WEB-INF/views/products/products.jsp").forward(req, resp);
     }

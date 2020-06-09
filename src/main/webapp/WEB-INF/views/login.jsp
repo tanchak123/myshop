@@ -14,6 +14,9 @@
       crossorigin="anonymous">
 <head>
     <title>Вход</title>
+    <style>
+        <%@include file="style/button.css"%>
+    </style>
 </head>
 <body class="bg-light text-dark"><br>
 <div class="py-md-1" style="text-align:center;"><br>
@@ -26,7 +29,7 @@
             <div class="form-group px-md-5">
                 <label for="log">Логин:</label>
                 <input type="text" class="form-control" id="log" aria-describedby="loginHelp"
-                       name="login" required>
+                       name="login" required style="box-shadow: 0 5px rgb(255, 228, 99)">
                 <small id="loginHelp" class="form-text text-muted">
                     We'll never share your data with anyone else.</small>
                 <div class="invalid-feedback">
@@ -37,8 +40,8 @@
         <div class="mx-auto" style="width: 400px;">
             <div class="form-group px-md-5">
                 <label for="pass">Пароль:</label>
-                <input type="password" class="form-control" id="pass" aria-describedby="passHelp"
-                       name="password" required>
+                <input type="password" style="box-shadow: 0 5px rgb(255, 228, 99)" class="form-control" id="pass" aria-describedby="passHelp"
+                       name="password" required >
                 <small id="passHelp" class="form-text text-muted">
                     Пароль должен содержать 8-20 символов</small>
                 <div class="invalid-feedback">
@@ -47,30 +50,10 @@
             </div>
         </div>
         <div style="text-align: center">
-        <button type="submit">Войти</button>
+            <button class="button">Войти</button>
         </div>
     </form>
 </form>
-<script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function () {
-        'use strict';
-        window.addEventListener('load', function () {
-            // Fetch all the forms we want to apply custom Bootstrap validation styles to
-            var forms = document.getElementsByClassName('needs-validation');
-            // Loop over them and prevent submission
-            var validation = Array.prototype.filter.call(forms, function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (form.checkValidity() === false) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        }, false);
-    })();
-</script>
 <br>
 <div class="mx-auto" style="text-align: center"><p>Новенький?
     <a href="${pageContext.request.contextPath}/registration">Присоединиться!</a></p></div>

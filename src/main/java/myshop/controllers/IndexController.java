@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import myshop.lib.Injector;
 import myshop.model.Role;
+import myshop.model.User;
 import myshop.service.UserService;
 
 public class IndexController extends HttpServlet {
@@ -21,11 +22,13 @@ public class IndexController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         String timeValue = LocalTime.now().toString().substring(0,8);
-        Long userId = (Long) req.getSession().getAttribute(USER_ID);
-        List<Role.RoleName> roles = new ArrayList<>(userService.get(userId).getRoles());
-        String role = roles.get(roles.size() - 1).toString();
+        User user = userService.get((Long) req.getSession().getAttribute(USER_ID));
+        for (Role.RoleName roleName : user.getRoles()) {
+            if (roleName.toString().equals("ADMIN")) {
+                req.setAttribute("roles", roleName.toString());
+            }
+        }
         req.setAttribute("time", timeValue);
-        req.setAttribute("roles", role);
         req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
     }
 }

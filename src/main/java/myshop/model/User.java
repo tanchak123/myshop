@@ -2,6 +2,7 @@ package myshop.model;
 
 import static myshop.model.Role.RoleName.USER;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -9,7 +10,7 @@ public class User {
     private Long id;
     private String login;
     private String password;
-    private Set<Role.RoleName> roles = new HashSet<>();
+    private HashSet<Role.RoleName> roles = new HashSet<>();
 
     public User(String login, String password) {
         this.login = login;
@@ -39,7 +40,7 @@ public class User {
                 '}';
     }
 
-    public Set<Role.RoleName> getRoles() {
+    public HashSet<Role.RoleName> getRoles() {
         return roles;
     }
 
@@ -49,8 +50,8 @@ public class User {
         return sb.toString().substring(0, sb.length() - 1);
     }
 
-    public void setRoles(Role.RoleName role) {
-        roles.add(role);
+    public void setRoles(HashSet<Role.RoleName> roles) {
+        this.roles = roles;
     }
 
     public void setId(Long id) {

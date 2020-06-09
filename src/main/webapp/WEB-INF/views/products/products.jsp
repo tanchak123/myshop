@@ -23,8 +23,8 @@
             <a href="${pageContext.request.contextPath}/myprofile">Мой профиль</a>
             <ul>
                 <li><a href="${pageContext.request.contextPath}/mybucket">Моя корзина</a></li>
-                <li><a href="${pageContext.request.contextPath}/order">My Orders</a></li>
-                <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+                <li><a href="${pageContext.request.contextPath}/order">Мои заказы</a></li>
+                <li><a href="${pageContext.request.contextPath}/logout">Выйти</a></li>
             </ul>
         </li>
         <li>
@@ -56,24 +56,32 @@
 </div>
 <table border="10">
     <tr>
-        <th colspan="4" style="text-align: center">СПИСОК НАШИХ ТОВАРОВ</th>
+        <th colspan="7" style="text-align: center">СПИСОК НАШИХ ТОВАРОВ</th>
     </tr>
     <tr>
         <th>id</th>
         <th>Название</th>
         <th>Цена</th>
         <th>Купить?</th>
+        <th>Картинка</th>
+<c:if test="${roles == 'ADMIN'}">
+        <th>Изменить картинку</th>
+</c:if>
     </tr>
 <c:forEach var="product" items="${products}">
     <tr>
         <td><c:out value="${product.id}"/></td>
         <td><c:out value="${product.name}"/></td>
         <td><c:out value="${product.price}"/></td>
+        <td><img src="${product.image}"></td>
         <td><a href="${pageContext.request.contextPath}products/add?product_id=${product.id}">В корзину</a></td>
+        <c:if test="${roles == 'ADMIN'}">
+        <td><a href="${pageContext.request.contextPath}/imagec?product_id=${product.id}" class="btn">Изменить картинку</a></td>
+        </c:if>
     </tr>
 </c:forEach>
     <c:if test="${roles == 'ADMIN'}">
-    <tr><th colspan="4" style="text-align: center"><a href="${pageContext.request.contextPath}/products/create">Создать товар</a></th></tr>
+    <tr><th colspan="6" style="text-align: center"><a href="${pageContext.request.contextPath}/products/create">Создать товар</a></th></tr>
     </c:if>
 </table>
 </body>

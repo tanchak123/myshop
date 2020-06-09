@@ -26,8 +26,8 @@
             <a href="${pageContext.request.contextPath}/myprofile">Мой профиль</a>
             <ul>
                 <li><a href="${pageContext.request.contextPath}/mybucket">Моя корзина</a></li>
-                <li><a href="${pageContext.request.contextPath}/order">My Orders</a></li>
-                <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+                <li><a href="${pageContext.request.contextPath}/order">Мои заказы</a></li>
+                <li><a href="${pageContext.request.contextPath}/logout">Выйти</a></li>
             </ul>
         </li>
         <li>
@@ -67,7 +67,6 @@
     <h1>НОВЫЙ ТОВАР</h1>
     <form method="post" action="${pageContext.request.contextPath}/products/create">
         <h4 style="color:red">${message}</h4>
-        <h4 style="color:red">${messagew}</h4>
         <div class="mx-auto" style="width: 400px;">
             <label for="name1">Укажите имя товара:</label>
             <input type="text" name="name" id="name1"
@@ -75,7 +74,8 @@
         </div>
         <div class="mx-auto" style="width: 400px;">
             <label for="price1" style="background: rgba(255,205,0,0.47); color: #2D2020;">Укажите цену товара </label>
-            <input type="number" min="0,01" step="0,01" max="1_000_000" name="price" class="form-control" aria-describedby="passHelp" id="price1">
+            <input type="number" min="0,01" step="0,01" max="1_000_000" name="price"
+                   class="form-control" aria-describedby="passHelp" id="price1">
         </div><br>
         <div style="text-align: center">
             <button type="submit">Создать :)</button>

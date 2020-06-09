@@ -21,8 +21,8 @@
             <a href="${pageContext.request.contextPath}/myprofile">Мой профиль</a>
             <ul>
                 <li><a href="${pageContext.request.contextPath}/mybucket">Моя корзина</a></li>
-                <li><a href="${pageContext.request.contextPath}/order">My Orders</a></li>
-                <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+                <li><a href="${pageContext.request.contextPath}/order">Мои заказы</a></li>
+                <li><a href="${pageContext.request.contextPath}/logout">Выйти</a></li>
             </ul>
         </li>
         <li>

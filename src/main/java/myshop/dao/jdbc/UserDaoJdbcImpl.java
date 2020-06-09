@@ -4,15 +4,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import myshop.dao.BucketDao;
 import myshop.dao.UserDao;
 import myshop.lib.Dao;
 import myshop.lib.Inject;
-import myshop.model.Bucket;
 import myshop.model.Role;
 import myshop.model.User;
 import myshop.util.ConnectionUtil;
@@ -90,9 +89,13 @@ public class UserDaoJdbcImpl implements UserDao {
     @Override
     public void delete(Long id) {
         String query = "DELETE FROM users WHERE user_id = ?";
+        String query1 = "DELETE FROM buckets WHERE user_id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
-        PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+        PreparedStatement preparedStatement = connection.prepareStatement(query);
+        PreparedStatement preparedStatement1 = connection.prepareStatement(query1)) {
             preparedStatement.setLong(1, id);
+            preparedStatement.executeUpdate();
+            preparedStatement1.setLong(2, id);
             preparedStatement.executeUpdate();
             LOGGER.info("Пользователь с айди " + id +"успешно удалён");
         } catch (SQLException throwables) {
@@ -124,10 +127,13 @@ public class UserDaoJdbcImpl implements UserDao {
         String password = resultSet.getNString("password");
         User user = new User(login, password);
         user.setId(resultSet.getLong("user_id"));
-        for (String roles : resultSet.getString("roles")
-                .split(" ")) {
-            user.setRoles(Role.RoleName.valueOf(roles));
+        HashSet<Role.RoleName> roleNames = new HashSet<>();
+        String string = resultSet.getString("roles");
+        String[] strings = string.split(" ");
+        for (String roles : strings) {
+                roleNames.add(Role.RoleName.valueOf(roles));
         }
+        user.setRoles(roleNames);
         return user;
     }
 }

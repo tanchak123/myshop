@@ -57,12 +57,13 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public void update(Product product) {
-        String query = "UPDATE products SET name = ?, price = ? WHERE product_id = ?";
+        String query = "UPDATE products SET name = ?, price = ?, image_url = ? WHERE product_id = ?";
         try (Connection connection = ConnectionUtil.getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.setString(1, product.getName());
             preparedStatement.setBigDecimal(2, product.getPrice());
-            preparedStatement.setLong(3, product.getId());
+            preparedStatement.setString(3, product.getImage());
+            preparedStatement.setLong(4, product.getId());
             preparedStatement.executeUpdate();
             LOGGER.info("Товар успешно обновлён");
         } catch (SQLException throwables) {
@@ -109,6 +110,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
         Product product = new Product(resultSet.getNString("name"),
                 resultSet.getBigDecimal("price").toString());
         product.setId(resultSet.getLong(1));
+        product.setImage(resultSet.getString("image_url"));
         return product;
     }
 }

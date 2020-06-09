@@ -8,17 +8,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import myshop.lib.Injector;
 import myshop.model.Product;
+import myshop.model.Role;
+import myshop.model.User;
 import myshop.service.ProductService;
+import myshop.service.UserService;
 
 public class ProductCreateController extends HttpServlet {
     private static final String USER_ID = "user_id";
     private static final Injector injector = Injector.getInstance("myshop");
+    private final UserService userService = (UserService)
+            injector.getInstance(UserService.class);
     private final ProductService productService = (ProductService)
             injector.getInstance(ProductService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
+        User user = userService.get((Long) req.getSession().getAttribute(USER_ID));
+        for (Role.RoleName roleName : user.getRoles()) {
+            if (roleName.toString().equals("ADMIN")) {
+                req.setAttribute("roles", roleName.toString());
+            }
+        }
         req.getRequestDispatcher("/WEB-INF/views/products/create/creater.jsp").forward(req, resp);
     }
 
@@ -31,7 +42,7 @@ public class ProductCreateController extends HttpServlet {
         if (Pattern.compile("[A-Za-z]").matcher(pricer).find()
                 || pricer.length() == 0) {
             req.setAttribute("message", "Неправильно введены данные :(");
-            req.getRequestDispatcher("/WEB-INF/views/products/create/creater.jsp")
+            req.getRequestDispatcher("/WEB-INF/views/products/create/creator.jsp")
                     .forward(req, resp);
         }
         if (!productService.checkProducts(name)) {
@@ -39,7 +50,7 @@ public class ProductCreateController extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/products");
         } else {
             req.setAttribute("message", "Неправильно введены данные :(");
-            req.getRequestDispatcher("/WEB-INF/views/products/create/creater.jsp")
+            req.getRequestDispatcher("/WEB-INF/views/products/create/creator.jsp")
                     .forward(req, resp);
         }
     }

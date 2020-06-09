@@ -14,6 +14,9 @@
       crossorigin="anonymous">
 <head>
     <title>Регистрация</title>
+    <style>
+        <%@include file="style/button.css"%>
+    </style>
 </head>
 <body class="bg-light text-dark"><br>
 <div class="py-md-1" style="text-align:center;"><br>
@@ -27,6 +30,7 @@
             <div class="form-group px-md-5">
                 <label for="log">Логин:</label>
                 <input type="text" class="form-control" id="log" aria-describedby="loginHelp"
+                       style="box-shadow: 0 5px rgb(255, 228, 99)"
                        name="login" required>
                 <small id="loginHelp" class="form-text text-muted">
                     We'll never share your data with anyone else.</small>
@@ -39,6 +43,7 @@
             <div class="form-group px-md-5">
                 <label for="pass1">Пароль:</label>
                 <input type="password" name="password"
+                       style="box-shadow: 0 5px rgb(255, 228, 99)"
                        class="form-control" id="pass1" aria-describedby="passHelp">
                 <small id="passHelp" class="form-text text-muted" >
                     Пароль должен содержать 8-20 символов :)</small>
@@ -50,7 +55,8 @@
         <div class="mx-auto" style="width: 400px;">
             <div class="form-group px-md-5">
                 <label for="pass2">Повторите Пароль</label>
-                <input type="password" name="password-repeat" id="pass2"
+                <input type="password" style="box-shadow: 0 5px rgb(255, 228, 99)"
+                       name="password-repeat" id="pass2"
                        class="form-control" aria-describedby="passHelp">
                 <small id="passHelp1" class="form-text text-muted" >
                     Старайся использовать буквы и цифры :)</small>
@@ -60,7 +66,7 @@
             </div>
         </div>
         <div style="text-align: center">
-            <button type="submit">Регистрация</button>
+            <button class="button" type="submit">Регистрация</button>
         </div>
     </form>
 

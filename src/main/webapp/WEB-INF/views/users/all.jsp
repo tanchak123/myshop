@@ -22,8 +22,8 @@
             <a href="${pageContext.request.contextPath}/myprofile">Мой профиль</a>
             <ul>
                 <li><a href="${pageContext.request.contextPath}/mybucket">Моя корзина</a></li>
-                <li><a href="${pageContext.request.contextPath}/order">My Orders</a></li>
-                <li><a href="${pageContext.request.contextPath}/logout">Logout</a></li>
+                <li><a href="${pageContext.request.contextPath}/order">Мои заказы</a></li>
+                <li><a href="${pageContext.request.contextPath}/logout">Выйти</a></li>
             </ul>
         </li>
         <li>
@@ -55,7 +55,7 @@
 <div>
 <table border="1">
         <tr>
-            <td colspan="5" style="text-align: center">Список пользователей</td>
+            <td colspan="6" style="text-align: center">Список пользователей</td>
         </tr>
     <tr>
         <th>id</th>
@@ -63,6 +63,7 @@
         <th>Пароль</th>
         <th>Роль</th>
         <th>Удалить?</th>
+        <th>Администратор?</th>
     </tr>
     <c:forEach var="user" items="${users}">
     <tr>
@@ -71,9 +72,11 @@
         <td><c:out value="${user.password}"/></td>
         <td><c:out value="${user.roles}"/></td>
         <td><a href="${pageContext.request.contextPath}users/delete?user_id=${user.id}">Удалить</a></td>
+        <td><a href="${pageContext.request.contextPath}users?user_id=${user.id}&case=post">Получить\Убрать</a></td>
     </tr>
     </c:forEach>
 </table>
+    <h1 style="background-color:rgba(248, 227, 145, 0.8);background-size: cover ;text-align:center;align-content:center">${message}</h1>
 </div>
 </body>
 </html>

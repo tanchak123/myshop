@@ -6,6 +6,7 @@ public class Product {
     private Long id;
     private String name;
     private BigDecimal price;
+    private String image = "";
 
     public Product(String name, String price) {
         this.name = name;
@@ -24,6 +25,14 @@ public class Product {
         this.price = new BigDecimal(price);
     }
 
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
     public Long getId() {
         return id;
     }
@@ -36,12 +45,17 @@ public class Product {
         return price;
     }
 
+    public String getImage() {
+        return image;
+    }
+
     @Override
     public String toString() {
-        return "Item{"
-                + "id=" + id
-                + ", name='" + name + '\''
-                + ", price=" + price
-                + '}';
+        return "Product{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                ", image='" + image + '\'' +
+                '}';
     }
 }
