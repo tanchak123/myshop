@@ -22,7 +22,7 @@ public class UserAdminController extends HttpServlet {
         User user = userService.get(Long.valueOf(req.getParameter("user_id")));
         for (Role.RoleName roleName : user.getRoles()) {
             if (roleName.equals(Role.RoleName.ADMIN)) {
-                req.setAttribute("message", "Пользователя с логином '" + user.getLogin()
+                req.setAttribute("message", "Пользователь с логином '" + user.getLogin()
                         + "'больше не администратор");
                 user.setRoles(new HashSet<>(List.of(Role.RoleName.USER)));
                 userService.update(user);
