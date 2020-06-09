@@ -29,7 +29,7 @@
             <div class="form-group px-md-5">
                 <label for="log">Логин:</label>
                 <input type="text" class="form-control" id="log" aria-describedby="loginHelp"
-                       name="login" required>
+                       name="login" required style="box-shadow: 0 5px rgb(255, 228, 99)">
                 <small id="loginHelp" class="form-text text-muted">
                     We'll never share your data with anyone else.</small>
                 <div class="invalid-feedback">
@@ -40,8 +40,8 @@
         <div class="mx-auto" style="width: 400px;">
             <div class="form-group px-md-5">
                 <label for="pass">Пароль:</label>
-                <input type="password" class="form-control" id="pass" aria-describedby="passHelp"
-                       name="password" required>
+                <input type="password" style="box-shadow: 0 5px rgb(255, 228, 99)" class="form-control" id="pass" aria-describedby="passHelp"
+                       name="password" required >
                 <small id="passHelp" class="form-text text-muted">
                     Пароль должен содержать 8-20 символов</small>
                 <div class="invalid-feedback">

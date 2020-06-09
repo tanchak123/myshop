@@ -6,17 +6,18 @@
     text-align: center;
     text-decoration: none;
     outline: none;
-    color: #fff;
-    background-color: #001f6c;
+    color: black;
+    background-color: rgb(255, 228, 99);
     border: none;
     border-radius: 15px;
-    box-shadow: 0 9px #999;
+    box-shadow: 0 5px #999;
 }
 
-.button:hover {background-color: #4c68af}
+.button:hover {background-color: rgba(255, 228, 99, 0.7)
+}
 
 .button:active {
-    background-color: #6f9cff;
+    background-color: rgba(255, 255, 255, 0.55);
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
